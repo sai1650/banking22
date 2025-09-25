@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BankFlow — Patterns Demo (Observer / Strategy / Command)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1><i class="fas fa-university"></i> BankFlow</h1>
+      <p class="subtitle">Observer • Strategy • Command — Interactive Demo</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel left">
+        <div class="card">
+          <h2>Create Account</h2>
+          <div class="form-row">
+            <input id="acct-name" placeholder="Customer name" />
+            <select id="acct-type">
+              <option value="savings">Savings</option>
+              <option value="fixed">Fixed Deposit</option>
+              <option value="current">Current</option>
+            </select>
+            <input id="acct-balance" type="number" min="0" step="0.01" placeholder="Initial balance" />
+            <button class="btn primary" id="create-acct">Create Account</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Accounts</h2>
+          <div id="accounts-list" class="accounts-list">
+            <!-- populated by JS -->
+            <div class="empty">No accounts yet — create one ✨</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Notifications</h2>
+          <div id="notifications-feed" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="panel middle">
+        <div class="card">
+          <h2>Account Actions (Commands)</h2>
+
+          <div class="action-row">
+            <label>From Account:</label>
+            <select id="from-account"></select>
+          </div>
+
+          <div class="action-row">
+            <label>To Account (for transfer):</label>
+            <select id="to-account"></select>
+          </div>
+
+          <div class="action-row">
+            <label>Amount:</label>
+            <input id="amount" type="number" min="0.01" step="0.01" placeholder="₹ 0.00" />
+          </div>
+
+          <div class="actions">
+            <button class="btn success" id="cmd-deposit"><i class="fas fa-plus-circle"></i> Deposit</button>
+            <button class="btn warning" id="cmd-withdraw"><i class="fas fa-minus-circle"></i> Withdraw</button>
+            <button class="btn info" id="cmd-transfer"><i class="fas fa-exchange-alt"></i> Transfer</button>
+            <button class="btn neutral" id="cmd-undo"><i class="fas fa-undo"></i> Undo Last</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Interest Strategies</h2>
+          <div class="strategy-row">
+            <label>Account:</label>
+            <select id="interest-account"></select>
+            <button class="btn primary" id="apply-interest">Apply Interest</button>
+          </div>
+          <p class="hint">Savings: 4% p.a., Fixed: 7% p.a., Current: 0.5% p.a. (demo)</p>
+        </div>
+
+        <div class="card">
+          <h2>Command History</h2>
+          <div id="command-history" class="feed"></div>
+          <div class="stats">
+            <div><strong>Commands:</strong> <span id="stat-commands">0</span></div>
+            <div><strong>Observers:</strong> <span id="stat-observers">0</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel right">
+        <div class="card">
+          <h2>Selected Account Details</h2>
+          <div id="acct-details" class="acct-details">
+            <div class="empty">Select an account to see details.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Quick Demo</h2>
+          <button class="btn neon" id="demo-setup">Make Demo Accounts</button>
+          <button class="btn ghost" id="clear-all">Reset Demo</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>Design patterns: <em>Observer</em>, <em>Strategy</em>, <em>Command</em> — implemented in plain JS for learning/demo.</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
